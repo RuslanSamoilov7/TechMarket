@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechMarket - Корзина</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html, body {
+            height: 100%;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            font-family: sans-serif;
+        }
+        header {
+            background-color: #f7cdcd;
+            padding: 20px;
+            border-bottom: 3px solid #d99c9c;
+            text-align: center;
+        }
+        header nav a {
+            text-decoration: none;
+            color: #2c3e50;
+            margin-right: 12px;
+        }
+        header nav a:hover {
+            text-decoration: underline;
+            color: #0000ff;
+        }
+        
+        .main {
+            flex: 1;
+            padding: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .cart-title {
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #ff9900;
+        }
+        
+        .cart-item {
+            display: flex;
+            align-items: center;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            gap: 25px;
+            transition: box-shadow 0.3s;
+        }
+        .cart-item:hover {
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+        }
+        .cart-item img {
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+        }
+        .cart-item-info {
+            flex: 1;
+        }
+        .cart-item-title {
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+        .cart-item-price {
+            color: #c97b7b;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        
+        .cart-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .cart-controls button {
+            background-color: #f0e6f6;
+            border: 2px solid #e8dff0;
+            padding: 8px 15px;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+        .cart-controls button:hover {
+            background-color: #e8dff0;
+            border-color: #d0c0e0;
+        }
+        .cart-controls span {
+            font-weight: bold;
+            font-size: 18px;
+            min-width: 30px;
+            text-align: center;
+        }
+        
+        .remove-btn {
+            background-color: transparent;
+            border: none;
+            color: #999;
+            cursor: pointer;
+            font-size: 24px;
+            padding: 10px;
+            transition: color 0.3s;
+        }
+        .remove-btn:hover {
+            color: #c97b7b;
+        }
+
+        .cart-total {
+            text-align: right;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #ddd;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .empty-cart {
+            text-align: center;
+            font-size: 20px;
+            color: #666;
+            margin-top: 50px;
+            padding: 40px;
+            border: 2px dashed #ddd;
+            border-radius: 8px;
+        }
+        
+        .checkout-btn {
+            display: inline-block;
+            margin-top: 20px;
+            background-color: #c97b7b;
+            color: white;
+            padding: 15px 40px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            border: 2px solid #b06565;
+            cursor: pointer;
+            font-size: 18px;
+            transition: 0.3s;
+            width: 100%;
+            max-width: 300px;
+        }
+        .checkout-btn:hover {
+            background-color: #b06565;
+            border-color: #965050;
+        }
+
+        footer {
+            border-top: 3px solid #d99c9c;
+            background-color: #f7cdcd;
+            padding: 20px;
+            text-align: center;
+        }
+        footer a {
+            padding: 6px 10px;
+            text-decoration: none;
+            color: #2d2d3a;
+        }
+        footer a:hover {
+            text-decoration: underline;
+            color: #0000ff;
+        }
+
+        @media screen and (max-width: 768px) {
+            .cart-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            .cart-controls {
+                justify-content: center;
+            }
+            .checkout-btn {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h2>TechMarket</h2>
+        <form><input type="search" size="40"><button>Поиск</button></form> 
+        <nav>
+            <a href="index.html">Главная</a>
+            <a href="catalog-t.html">Каталог</a>
+            <a href="infa.html">О нас</a>
+            <a href="korz.html">Корзина</a>
+            <a href="oplata.html">Способы оплаты</a>
+        </nav> 
+    </header>
+
+    <main class="main">
+        <h2 class="cart-title">Корзина</h2>
+        
+        <div id="cart-container"></div>
+
+        <div id="cart-total-block" style="display: none;">
+            <div class="cart-total">Итого: <span id="total-price">0</span> ₽</div>
+            <div style="text-align: right;">
+                <button class="checkout-btn" onclick="alert('Заказ оформлен! Спасибо за покупку.')">Оформить заказ</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p id="info">Контакты: <a href="mailto:TechMarket@gmail.com">TechMarket@gmail.com</a>  <a href="tel:+89999999999"> 8 999 999 99 99</a>  <a href="form.html">Обратная связь </a></p>
+        <p>&copy; 2026 TechMarket. Все права защищены.</p>
+    </footer>
+
+    <script>
+        function renderCart() {
+            const container = document.getElementById('cart-container');
+            const totalBlock = document.getElementById('cart-total-block');
+            const totalPriceElement = document.getElementById('total-price');
+            
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            
+            container.innerHTML = '';
+            
+            if (cart.length === 0) {
+                container.innerHTML = '<div class="empty-cart">Ваша корзина пока пуста :(</div>';
+                totalBlock.style.display = 'none';
+                return;
+            }
+
+            let totalSum = 0;
+
+            cart.forEach((item, index) => {
+                totalSum += item.price * item.quantity;
+                
+                const itemHTML = `
+                    <div class="cart-item">
+                        <img src="${item.image}" alt="${item.title}">
+                        <div class="cart-item-info">
+                            <div class="cart-item-title">${item.title}</div>
+                            <div class="cart-item-price">${item.price.toLocaleString()} ₽</div>
+                            <div class="cart-controls">
+                                <button onclick="changeQuantity(${index}, -1)">-</button>
+                                <span>${item.quantity}</span>
+                                <button onclick="changeQuantity(${index}, 1)">+</button>
+                            </div>
+                        </div>
+                        <button class="remove-btn" onclick="removeItem(${index})" title="Удалить">&times;</button>
+                    </div>
+                `;
+                container.innerHTML += itemHTML;
+            });
+
+            totalPriceElement.innerText = totalSum.toLocaleString();
+            totalBlock.style.display = 'block';
+        }
+
+        function changeQuantity(index, delta) {
+            let cart = JSON.parse(localStorage.getItem('cart'));
+            cart[index].quantity += delta;
+
+            if (cart[index].quantity <= 0) {
+                cart.splice(index, 1);
+            }
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+            renderCart();
+        }
+
+        function removeItem(index) {
+            let cart = JSON.parse(localStorage.getItem('cart'));
+            cart.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            renderCart();
+        }
+
+        document.addEventListener('DOMContentLoaded', renderCart);
+    </script>
+</body>
+</html>
