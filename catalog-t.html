@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechMarket - Категории</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        header {
+            background-color: #f7cdcd;
+            padding: 20px;
+            border-bottom: 3px solid #d99c9c;
+            text-align: center;
+        }
+        header nav a {
+            text-decoration: none;
+            color: #2c3e50;
+            margin-right: 12px;
+        }
+        header nav a:hover {
+            text-decoration: underline;
+            color: #0000ff;
+        }
+        #cart-count {
+            background-color: #c97b7b;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-left: 5px;
+            vertical-align: middle;
+        }
+        footer {
+            border-top: 3px solid #d99c9c;
+            background-color: #f7cdcd;
+            padding: 20px;
+            text-align: center;
+            margin-top: 50px;
+        }
+        footer a {
+            padding: 6px 10px;
+            text-decoration: none;
+            color: #2d2d3a;
+        }
+        footer a:hover {
+            text-decoration: underline;
+            color: #0000ff;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        .page-title {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 40px;
+            font-weight: bold;
+        }
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            justify-content: center;
+        }
+        .category-card {
+            background-color: #6b8e6b;
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: #fff;
+            font-size: 18px;
+            transition: transform 0.2s, background-color 0.3s;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+        .category-card:hover {
+            transform: scale(1.02);
+            background-color: #567356;
+        }
+        
+        @media screen and (max-width: 768px) {
+            .category-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+        }
+        @media screen and (max-width: 480px) {
+            .category-grid {
+                grid-template-columns: 1fr;
+            }
+            .category-card {
+                height: 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h2>TechMarket</h2>
+       <form>
+        <input type="search" size="40">
+        <button>Поиск</button>
+       </form> 
+       <nav>
+        <a href="index.html">Главная</a>
+        <a href="catalog-t.html">Каталог</a>
+        <a href="infa.html">О нас</a>
+        <a href="korz.html">Корзина<span id="cart-count">0</span></a>
+        <a href="oplata.html">Способы оплаты</a>
+       </nav> 
+    </header>
+
+    <main class="container">
+        <h1 class="page-title">Каталог товаров</h1>
+
+        <div class="category-grid">
+            <a href="catalog-tel.html" class="category-card">Смартфоны</a>
+            <a href="catalog-acs.html" class="category-card">Аксессуары</a>
+            <a href="catalog-audio.html" class="category-card">Аудио</a>
+            <a href="catalog-nsust.html" class="category-card">Носимые устройства</a>
+            <a href="catalog-pitan.html" class="category-card">Питание и зарядка</a>
+            <a href="catalog.html" class="category-card">Все товары</a>
+        </div>
+    </main>
+
+    <footer>
+        <p id="info">Контакты: <a href="mailto:TechMarket@gmail.com">TechMarket@gmail.com</a>  <a href="tel:+89999999999"> 8 999 999 99 99</a>  <a href="form.html">Обратная связь </a></p>
+        <p>&copy; 2026 TechMarket. Все права защищены.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const countElement = document.getElementById('cart-count');
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            countElement.innerText = totalItems;
+        });
+    </script>
+</body>
+</html>

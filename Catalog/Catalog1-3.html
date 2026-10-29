@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iPhone 17 Pro</title>
+<style>
+        header {
+            background-color: #f7cdcd;
+            padding: 20px;
+            border-bottom: 3px solid #d99c9c;
+            text-align: center;
+        }
+        header nav a {
+            text-decoration: none;
+            color: #2c3e50;
+            margin-right: 12px;
+        }
+        header nav a:hover {
+            text-decoration: underline;
+            color: #0000ff;
+        }
+        #cart-count {
+            background-color: #c97b7b;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-left: 5px;
+            vertical-align: middle;
+        }
+        
+        main {
+            width: 950px;
+            margin: 25px auto;
+            background-color: white;
+            border: 1px solid #ccc;
+            padding: 20px;
+        }
+        
+        .product-container {
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+        }
+
+        .product-gallery {
+            flex: 1;
+            text-align: center;
+        }
+
+        .product-info {
+            flex: 1;
+            text-align: left;
+            padding-top: 10px;
+            font-family: 'Open Sans', sans-serif;
+            color: #333;
+        }
+
+        .product-info h1 {
+            font-size: 32px;
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: #1a1a1a;
+        }
+
+        .product-info h2 {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        .product-info ul {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 20px 0;
+            line-height: 1.6;
+        }
+
+        .product-info ul li {
+            margin-bottom: 5px;
+            font-size: 15px;
+        }
+
+        .product-info ul li strong {
+            color: #000;
+            font-weight: 600;
+        }
+
+        .product-info p {
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: #444;
+        }
+
+        .price-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .price {
+            font-size: 28px;
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+
+        .buy-btn {
+            background-color: #8b5a3c;
+            color: white;
+            border: none;
+            padding: 18px 60px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .buy-btn:hover {
+            background-color: #6d4530;
+            transform: scale(1.03);
+        }
+
+        .main-image img {
+            width: 100%;
+            max-width: 300px;
+            max-height: 400px;
+            object-fit: contain;
+            margin-bottom: 20px;
+        }
+
+        .preview {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .preview li {
+            display: inline-block;
+            border: 2px solid transparent;
+        }
+
+        .preview img {
+            width: 90px;
+            height: 90px;
+            object-fit: contain;   
+            padding: 5px;        
+            background-color: #fff;
+        }
+
+        .preview li:hover {
+            border: 2px solid orange;
+        }
+
+        footer {
+            border-top: 3px solid #d99c9c;
+            background-color: #f7cdcd;
+            padding: 20px;
+            text-align: center;
+        }
+
+        footer a {
+            padding: 6px 10px;
+            text-decoration: none;
+            color: #2d2d3a;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+            color: #0000ff;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h2>TechMarket</h2>
+       <form>
+        <input type="search" size="40">
+        <button>Поиск</button>
+       </form> 
+       <nav>
+        <a href="../index.html">Главная</a>
+        <a href="../catalog-t.html">Каталог</a>
+        <a href="../infa.html">О нас</a>
+        <a href="../korz.html">Корзина<span id="cart-count">0</span></a>
+        <a href="../oplata.html">Способы оплаты</a>
+       </nav> 
+    </header>
+
+    <main>
+        <div class="product-container">
+            
+            <div class="product-gallery">
+                <div class="main-image">
+                    <img src="https://c.dns-shop.ru/thumb/st1/fit/0/0/71b331c6e5dc0bba7bb890b7e2e4a5b5/8ef193cfd7b2718b2b98a5160d5a3ceae38180d5459248f6157b1b1fd75a9db6.jpg.webp" alt="iPhone 17 Pro">
+                </div>
+
+                <ul class="preview">
+                    <li>
+                        <a href="Catalog1-1.html">
+                            <img src="https://c.dns-shop.ru/thumb/st1/fit/0/0/52638c2ec9081602278dae9e3fe6844a/caef1b85893bb11bb88e2ebbce8d78897e4e4964ab484e4476e359d6e82c7097.jpg.webp" alt="iPhone 17 Pro">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="Catalog1-3.html">
+                            <img src="https://c.dns-shop.ru/thumb/st1/fit/0/0/cc9457cc7d5f7ceb658a807cbd7cc15e/ec3834a0258a04e88243dedee502b296ae915452216979220a3b331b33e1a7ff.jpg.webp" alt="iPhone 17 Pro">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="Catalog1-4.html">
+                            <img src="https://c.dns-shop.ru/thumb/st1/fit/0/0/0f897103bb09ad2a65474ed76dba0796/82e8a2169df0679d1625498ff5b1360ce9a4e55a45cc0ea9c54ae3bb45b39828.jpg.webp" alt="iPhone 17 Pro">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="product-info">
+                <h1>iPhone 17 Pro</h1>
+                
+                <h2>Характеристики:</h2>
+                <ul>
+                    <li><strong>Дисплей:</strong> 6.3", 2622x1206, Super Retina XDR, 120 Гц</li>
+                    <li><strong>Связь:</strong> 3G, 4G, 5G, eSIM, Nano-SIM</li>
+                    <li><strong>Процессор:</strong> Apple A19 Pro, 6</li>
+                    <li><strong>Память (ОЗУ/ПЗУ):</strong> 12 ГБ / 256 ГБ</li>
+                    <li><strong>Камера:</strong> 48+48+48 Мп</li>
+                    <li><strong>Питание:</strong> 3988 мА*ч (Li-Ion)</li>
+                </ul>
+
+                <h2>Описание:</h2>
+                <p>Флагманский смартфон Apple с чипом A19 Pro. Главная особенность — система из трех 48-МП камер Fusion, обеспечивающая 8-кратный оптический зум. Также получил инновационную 18-МП фронтальную камеру Center Stage, улучшенную систему охлаждения с испарительной камерой и защиту Ceramic Shield 2. Доступен в размерах 6.3 и 6.9 дюйма.</p>
+
+                <div class="price-row">
+                    <span class="price">115 000 ₽</span>
+                    <button class="buy-btn" id="add-to-cart-btn">Добавить в корзину</button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+    <p id="info">Контакты: <a href="mailto:TechMarket@gmail.com">TechMarket@gmail.com</a>  <a href="tel:+89999999999"> 8 999 999 99 99</a> <a href="../form.html">Обратная связь </a></p>
+    <p>&copy; 2026 TechMarket. Все права защищены.</p>
+</footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            function updateCartCount() {
+                const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                const countElement = document.getElementById('cart-count');
+                if (countElement) {
+                    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+                    countElement.innerText = totalItems;
+                }
+            }
+
+            updateCartCount();
+
+            const addToCartBtn = document.getElementById('add-to-cart-btn');
+            if (addToCartBtn) {
+                addToCartBtn.addEventListener('click', () => {
+                    const title = document.querySelector('.product-info h1').innerText;
+                    const priceText = document.querySelector('.price').innerText;
+                    const price = parseInt(priceText.replace(/[^0-9]/g, ''));
+                    const image = document.querySelector('.preview li:first-child img').src;
+
+                    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                    const existingItem = cart.find(item => item.title === title);
+
+                    if (existingItem) {
+                        existingItem.quantity += 1;
+                    } else {
+                        cart.push({ title, price, image, quantity: 1 });
+                    }
+
+                    localStorage.setItem('cart', JSON.stringify(cart));
+                    updateCartCount();
+
+                    const originalText = addToCartBtn.innerText;
+                    addToCartBtn.innerText = "Добавлено!";
+                    addToCartBtn.style.backgroundColor = "#4CAF50";
+                    setTimeout(() => {
+                        addToCartBtn.innerText = originalText;
+                        addToCartBtn.style.backgroundColor = "#8b5a3c";
+                    }, 1000);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

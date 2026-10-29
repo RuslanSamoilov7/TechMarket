@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechMarket - Питание и зарядка</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        header {
+            background-color: #f7cdcd;
+            padding: 20px;
+            border-bottom: 3px solid #d99c9c;
+            text-align: center;
+        }
+        header nav a {
+            text-decoration: none;
+            color: #2c3e50;
+            margin-right: 12px;
+        }
+        header nav a:hover {
+            text-decoration: underline;
+            color: #0000ff;
+        }
+        #cart-count {
+            background-color: #c97b7b;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-left: 5px;
+            vertical-align: middle;
+        }
+        .main {
+            flex: 1;
+            padding: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .catalog__title {
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #ff9900;
+        }
+        .catalog-layout {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 30px;
+            margin-top: 20px;
+        }
+        .sidebar {
+            padding: 20px;
+            border-radius: 16px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+            border: 1px solid #f0e6f6;
+            align-self: start;
+            position: sticky;
+            top: 20px;
+        }   
+        .sidebar h3 {
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #ff9900;
+        }
+        .filter-section {
+            margin-bottom: 25px;
+        }          
+        .filter-section h4 {
+            margin-bottom: 12px;
+        }
+        .filter-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            gap: 8px;
+        }
+        .filter-option label {
+            cursor: pointer;
+        }
+        .filter-option input {
+            cursor: pointer;
+            width: 18px;
+            height: 18px;
+        }
+        .filter-select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: 2px solid #e8dff0;
+            cursor: pointer;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .filter-select:focus {
+            border-color: #8e44ad;
+            outline: none;
+        }
+        .catalog__grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            align-items: stretch;
+        }
+        .product-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            transition: box-shadow 0.3s;
+        }
+        .product-card:hover {
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+        }
+        .product-card__link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            transition: color 0.2s;
+        }
+        .product-card__link:hover .product-card__title {
+            color: #ff9900;
+            text-decoration: underline;
+        }
+        .product-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            margin-bottom: 10px;
+        }
+        .product-card__title {
+            font-weight: bold;
+            margin: 8px 0;
+        }
+        .product-card__info {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        .product-card__description {
+            color: #666;
+            margin: 5px 0;
+            font-style: italic;
+            flex-grow: 1;
+        }
+        .product-card__price {
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .product-card__button {
+            background-color: #c97b7b;
+            color: white;
+            border: 2px solid #b06565;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: auto;
+            font-weight: bold;
+            transition: 0.3s;
+            width: 100%;
+        }
+        .product-card__button:hover {
+            background-color: #b06565;
+            color: white;
+            border-color: #965050;
+        }
+        footer {
+            border-top: 3px solid #d99c9c;
+            background-color: #f7cdcd;
+            padding: 20px;
+            text-align: center;
+        }
+        footer a {
+            padding: 6px 10px;
+            text-decoration: none;
+            color: #2d2d3a;
+        }
+        footer a:hover {
+            text-decoration: underline;
+            color: #0000ff;
+        }
+
+        @media screen and (max-width: 1024px) {
+            .catalog-layout { grid-template-columns: 240px 1fr; gap: 25px; }
+            .catalog__grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media screen and (max-width: 768px) {
+            .catalog-layout { grid-template-columns: 1fr; gap: 20px; }
+            .sidebar { position: static; margin-bottom: 20px; }
+            .catalog__grid { grid-template-columns: repeat(2, 1fr); }
+            .main { padding: 20px; }
+        }
+        @media screen and (max-width: 480px) {
+            .catalog__grid { grid-template-columns: 1fr; }
+            .sidebar { padding: 15px; }
+            .filter-option label { font-size: 13px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h2>TechMarket</h2>
+       <form id="search-form">
+        <input type="search" id="search-input" size="40" placeholder="Поиск...">
+        <button type="button" id="search-button">Поиск</button>
+       </form> 
+       <nav>
+        <a href="index.html">Главная</a>
+        <a href="catalog-t.html">Каталог</a>
+        <a href="infa.html">О нас</a>
+        <a href="korz.html">Корзина<span id="cart-count">0</span></a>
+        <a href="oplata.html">Способы оплаты</a>
+       </nav> 
+    </header>
+    <main class="main">
+        <h2 class="catalog__title">Питание и зарядка</h2>
+        <div class="catalog-layout">
+        <aside class="sidebar">
+            <h3>🔍 Фильтр товаров</h3>
+            <form class="filter-form" id="filter-form">
+                <div class="filter-section">
+                    <h4>Тип</h4>
+                    <div class="filter-option">
+                        <input type="checkbox" id="type-powerbank" class="type-filter" value="powerbank" checked>
+                        <label for="type-powerbank">Портативные аккумуляторы</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="checkbox" id="type-charger" class="type-filter" value="charger" checked>
+                        <label for="type-charger">Зарядные устройства</label>
+                    </div>
+                </div>
+                <div class="filter-section">
+                    <h4>Цена</h4>
+                    <div class="filter-option">
+                        <input type="radio" id="price-all" name="price" value="all" checked>
+                        <label for="price-all">Все цены</label>
+                    </div>
+                    <div class="filter-option">
+                        <input type="radio" id="price-low" name="price" value="low">
+                        <label for="price-low">До 5 000 ₽</label>
+                    </div>
+                </div>
+                <div class="filter-section">
+                    <h4>Сортировка</h4>
+                    <select class="filter-select" id="sort-select" name="sort">
+                        <option value="default">По умолчанию</option>
+                        <option value="price-asc">По возрастанию цены</option>
+                        <option value="price-desc">По убыванию цены</option>
+                        <option value="name">По названию</option>
+                    </select>
+                </div>
+            </form>
+        </aside>
+        <div class="catalog__grid" id="product-grid">
+            <div class="product-card" data-type="powerbank">
+                <a href="Catalog/Catalog9-1.html" class="product-card__link">
+                    <img src="https://c.dns-shop.ru/thumb/st1/fit/500/500/b22d4272724bbf30298e9d74d825f640/ea817470048c67afec55251faf4801cf50f35cc087fd7e557d8c46046c403bfd.jpg.webp" alt="Портативный аккумулятор Xiaomi BHR9126GL черный">
+                    <div class="product-card__title">Портативный аккумулятор Xiaomi BHR9126GL черный</div>
+                </a>
+                <div class="product-card__info">
+                    <div class="product-card__description">емкость — 30000 мА·ч (111 Вт·ч), выходная мощность — 18 Вт, разъемы — 1× USB-C + 2× USB-A (выход), вход — Micro-USB / USB-C, быстрая зарядка (QC/PD), одновременная зарядка до 3 устройств</div>
+                    <div class="product-card__price">1 999 ₽</div>
+                </div>
+                <button class="product-card__button">Добавить в корзину</button>
+            </div>
+            <div class="product-card" data-type="charger">
+                <a href="Catalog/Catalog10-1.html" class="product-card__link">
+                    <img src="https://c.dns-shop.ru/thumb/st4/fit/wm/0/0/f8fb4035b35baded9e66d6c3ec75aa79/31cbb198360fc3efafb06a0359076c422bf942a6a719712f1f995bfc98aa13b1.jpg.webp" alt="Беспроводное зарядное устройство Apple MagSafe Charger">
+                    <div class="product-card__title">Беспроводное зарядное устройство Apple MagSafe Charger</div>
+                </a>
+                <div class="product-card__info">
+                    <div class="product-card__description">магнитное позиционирование, мощность — до 25 Вт (с адаптером 30 Вт для iPhone 16/17 и новее) или до 15 Вт (с адаптером 20 Вт для iPhone 12+), стандарты — Qi2 25W и Qi, кабель — встроенный USB-C (1 м или 2 м), адаптер питания в комплект не входит.</div>
+                    <div class="product-card__price">999 ₽</div>
+                </div>
+                <button class="product-card__button">Добавить в корзину</button>
+            </div>
+        </div>
+    </div>
+    </main>
+    <footer>
+        <p id="info">Контакты: <a href="mailto:TechMarket@gmail.com">TechMarket@gmail.com</a>  <a href="tel:+89999999999"> 8 999 999 99 99</a>  <a href="form.html">Обратная связь </a></p>
+        <p>&copy; 2026 TechMarket. Все права защищены.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const grid = document.getElementById('product-grid');
+            const filterForm = document.getElementById('filter-form');
+            const sortSelect = document.getElementById('sort-select');
+            const searchForm = document.getElementById('search-form');
+            const searchInput = document.getElementById('search-input');
+
+            updateCartCount();
+
+            document.querySelectorAll('.product-card__button').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const card = e.target.closest('.product-card');
+                    const title = card.querySelector('.product-card__title').innerText;
+                    const priceText = card.querySelector('.product-card__price').innerText;
+                    const price = parseInt(priceText.replace(/[^0-9]/g, ''));
+                    const image = card.querySelector('img').src;
+
+                    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                    const existingItem = cart.find(item => item.title === title);
+
+                    if (existingItem) {
+                        existingItem.quantity += 1;
+                    } else {
+                        cart.push({ title, price, image, quantity: 1 });
+                    }
+
+                    localStorage.setItem('cart', JSON.stringify(cart));
+                    updateCartCount();
+
+                    const originalText = button.innerText;
+                    button.innerText = "Добавлено!";
+                    button.style.backgroundColor = "#4CAF50";
+                    button.style.borderColor = "#388E3C";
+                    setTimeout(() => {
+                        button.innerText = originalText;
+                        button.style.backgroundColor = "";
+                        button.style.borderColor = "";
+                    }, 1000);
+                });
+            });
+
+            function updateCartCount() {
+                const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                const countElement = document.getElementById('cart-count');
+                const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+                countElement.innerText = totalItems;
+            }
+
+            function applyFiltersAndSearch() {
+                const query = searchInput.value.trim().toLowerCase();
+                const checkedTypes = Array.from(document.querySelectorAll('.type-filter:checked')).map(cb => cb.value);
+                const showAllTypes = checkedTypes.length === 0;
+                const priceValue = document.querySelector('input[name="price"]:checked').value;
+
+                grid.querySelectorAll('.product-card').forEach(card => {
+                    const title = card.querySelector('.product-card__title').innerText.toLowerCase();
+                    const type = card.getAttribute('data-type');
+                    const price = parseInt(card.querySelector('.product-card__price').innerText.replace(/[^0-9]/g, ''));
+
+                    const searchMatch = title.includes(query);
+                    const typeMatch = showAllTypes || checkedTypes.includes(type);
+                    let priceMatch = true;
+
+                    if (priceValue === 'low') priceMatch = price < 5000;
+
+                    if (searchMatch && typeMatch && priceMatch) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            }
+
+            filterForm.addEventListener('change', (e) => {
+                if (e.target.classList.contains('type-filter') || e.target.name === 'price') {
+                    applyFiltersAndSearch();
+                }
+            });
+
+            searchForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                applyFiltersAndSearch();
+            });
+
+            document.getElementById('search-button').addEventListener('click', applyFiltersAndSearch);
+            
+            searchInput.addEventListener('input', applyFiltersAndSearch);
+
+            sortSelect.addEventListener('change', () => {
+                const sortValue = sortSelect.value;
+                let cards = Array.from(grid.querySelectorAll('.product-card'));
+
+                cards.sort((a, b) => {
+                    const titleA = a.querySelector('.product-card__title').innerText.toLowerCase();
+                    const titleB = b.querySelector('.product-card__title').innerText.toLowerCase();
+                    const priceA = parseInt(a.querySelector('.product-card__price').innerText.replace(/[^0-9]/g, ''));
+                    const priceB = parseInt(b.querySelector('.product-card__price').innerText.replace(/[^0-9]/g, ''));
+
+                    if (sortValue === 'price-asc') return priceA - priceB;
+                    if (sortValue === 'price-desc') return priceB - priceA;
+                    if (sortValue === 'name') return titleA.localeCompare(titleB);
+                    return 0;
+                });
+
+                grid.innerHTML = '';
+                cards.forEach(card => grid.appendChild(card));
+            });
+        });
+    </script>
+</body>
+</html>

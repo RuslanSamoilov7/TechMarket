@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Фитнес-браслет Xiaomi Smart Band 10</title>
+<style>
+        header {
+            background-color: #f7cdcd;
+            padding: 20px;
+            border-bottom: 3px solid #d99c9c;
+            text-align: center;
+        }
+        header nav a {
+            text-decoration: none;
+            color: #2c3e50;
+            margin-right: 12px;
+        }
+        header nav a:hover {
+            text-decoration: underline;
+            color: #0000ff;
+        }
+        #cart-count {
+            background-color: #c97b7b;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-left: 5px;
+            vertical-align: middle;
+        }
+        
+        main {
+            width: 950px;
+            margin: 25px auto;
+            background-color: white;
+            border: 1px solid #ccc;
+            padding: 20px;
+        }
+        
+        .product-container {
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+        }
+
+        .product-gallery {
+            flex: 1;
+            text-align: center;
+        }
+
+        .product-info {
+            flex: 1;
+            text-align: left;
+            padding-top: 10px;
+            font-family: 'Open Sans', sans-serif;
+            color: #333;
+        }
+
+        .product-info h1 {
+            font-size: 32px;
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: #1a1a1a;
+        }
+
+        .product-info h2 {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        .product-info ul {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 20px 0;
+            line-height: 1.6;
+        }
+
+        .product-info ul li {
+            margin-bottom: 5px;
+            font-size: 15px;
+        }
+
+        .product-info ul li strong {
+            color: #000;
+            font-weight: 600;
+        }
+
+        .product-info p {
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: #444;
+        }
+
+        .price-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .price {
+            font-size: 28px;
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+
+        .buy-btn {
+            background-color: #8b5a3c;
+            color: white;
+            border: none;
+            padding: 18px 60px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .buy-btn:hover {
+            background-color: #6d4530;
+            transform: scale(1.03);
+        }
+
+        .main-image img {
+            width: 100%;
+            max-width: 300px;
+            max-height: 400px;
+            object-fit: contain;
+            margin-bottom: 20px;
+        }
+
+        .preview {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .preview li {
+            display: inline-block;
+            border: 2px solid transparent;
+        }
+
+        .preview img {
+            width: 90px;
+            height: 90px;
+            object-fit: contain;   
+            padding: 5px;        
+            background-color: #fff;
+        }
+
+        .preview li:hover {
+            border: 2px solid orange;
+        }
+
+        footer {
+            border-top: 3px solid #d99c9c;
+            background-color: #f7cdcd;
+            padding: 20px;
+            text-align: center;
+        }
+
+        footer a {
+            padding: 6px 10px;
+            text-decoration: none;
+            color: #2d2d3a;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+            color: #0000ff;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h2>TechMarket</h2>
+       <form>
+        <input type="search" size="40">
+        <button>Поиск</button>
+       </form> 
+       <nav>
+        <a href="../index.html">Главная</a>
+        <a href="../catalog-t.html">Каталог</a>
+        <a href="../infa.html">О нас</a>
+        <a href="../korz.html">Корзина<span id="cart-count">0</span></a>
+        <a href="../oplata.html">Способы оплаты</a>
+       </nav> 
+    </header>
+
+    <main>
+        <div class="product-container">
+            
+            <div class="product-gallery">
+                <div class="main-image">
+                    <img src="https://c.dns-shop.ru/thumb/st1/fit/500/500/24d4e0ff839e899371cb8253a87d88db/233b16db498c1ceb275ed36d54b4a96fa6d508afb8a0cef8a392a4408f27b3aa.jpg.webp" alt="Фитнес-браслет Xiaomi Smart Band 10">
+                </div>
+
+                <ul class="preview">
+                    <li>
+                        <a href="Catalog7-2.html">
+                            <img src="https://c.dns-shop.ru/thumb/st1/fit/wm/0/0/b3e630d28a240ae144e4f217025b0bb6/f9059d761d6279d5465b3924412f3ee6b622a54f3be1d95ce436e27c9c3dcfd5.jpg.webp" alt="Фитнес-браслет Xiaomi Smart Band 10">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="Catalog7-3.html">
+                            <img src="https://c.dns-shop.ru/thumb/st1/fit/wm/0/0/f409616743b951c4da03e9faa1204917/71f9bdbe00e752f6edf98753fdff67da39a2180346e1745b8f0814c5c93eaca4.jpg.webp" alt="Фитнес-браслет Xiaomi Smart Band 10">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="Catalog7-4.html">
+                            <img src="https://c.dns-shop.ru/thumb/st1/fit/wm/0/0/c11b70bfdbdbecb2fd6b2999b1c32d20/2ccfe1ec62b6739785d2170b6e8dbd0f5cbb9b7f4d2fddf72f27a764af3cd0f9.jpg.webp" alt="Фитнес-браслет Xiaomi Smart Band 10">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="product-info">
+                <h1>Фитнес-браслет Xiaomi Smart Band 10</h1>
+                
+                <h2>Характеристики:</h2>
+                <ul>
+                    <li><strong>Экран:</strong> 1.72" AMOLED, 520x212</li>
+                    <li><strong>Измерения:</strong> количество шагов, продолжительность и качество сна, про</li>
+                    <li><strong>Степень защиты:</strong> IP68</li>
+                    <li><strong>Время работы:</strong> 504 ч</li>
+                    <li><strong>Беспроводная связь:</strong> Bluetooth</li>
+                </ul>
+
+                <h2>Описание:</h2>
+                <p>Фитнес-браслет с 1.72-дюймовым AMOLED-дисплеем (212×520, до 1500 нит) и симметричными ультратонкими рамками. Поддерживает более 150 спортивных режимов, включая продвинутый режим плавания, и мониторинг сердечного ритма. Автономность — до 21 дня. Вес — около 16 г.</p>
+
+                <div class="price-row">
+                    <span class="price">2 999 ₽</span>
+                    <button class="buy-btn" id="add-to-cart-btn">Добавить в корзину</button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+    <p id="info">Контакты: <a href="mailto:TechMarket@gmail.com">TechMarket@gmail.com</a>  <a href="tel:+89999999999"> 8 999 999 99 99</a> <a href="../form.html">Обратная связь </a></p>
+    <p>&copy; 2026 TechMarket. Все права защищены.</p>
+</footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            function updateCartCount() {
+                const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                const countElement = document.getElementById('cart-count');
+                if (countElement) {
+                    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+                    countElement.innerText = totalItems;
+                }
+            }
+
+            updateCartCount();
+
+            const addToCartBtn = document.getElementById('add-to-cart-btn');
+            if (addToCartBtn) {
+                addToCartBtn.addEventListener('click', () => {
+                    const title = document.querySelector('.product-info h1').innerText;
+                    const priceText = document.querySelector('.price').innerText;
+                    const price = parseInt(priceText.replace(/[^0-9]/g, ''));
+                    const image = document.querySelector('.main-image img').src;
+
+                    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                    const existingItem = cart.find(item => item.title === title);
+
+                    if (existingItem) {
+                        existingItem.quantity += 1;
+                    } else {
+                        cart.push({ title, price, image, quantity: 1 });
+                    }
+
+                    localStorage.setItem('cart', JSON.stringify(cart));
+                    updateCartCount();
+
+                    const originalText = addToCartBtn.innerText;
+                    addToCartBtn.innerText = "Добавлено!";
+                    addToCartBtn.style.backgroundColor = "#4CAF50";
+                    setTimeout(() => {
+                        addToCartBtn.innerText = originalText;
+                        addToCartBtn.style.backgroundColor = "#8b5a3c";
+                    }, 1000);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
